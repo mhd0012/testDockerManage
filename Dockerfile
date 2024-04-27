@@ -8,8 +8,6 @@ WORKDIR /code
 COPY . /code/
 
 # اجرای دستورات مدیریتی جنگو برای ایجاد دیتابیس و جمع‌آوری فایل‌های استاتیک
-RUN python manage.py migrate
-RUN python manage.py collectstatic --noinput
 
 # اجرای سرور توسعه دیجانگو
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
