@@ -1,13 +1,15 @@
-# استفاده از تصویر پایتون به عنوان پایه
 FROM python:3.10
 
-# تنظیم کار دایرکتوری به /code
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /code
 WORKDIR /code
+RUN pip install --upgrade pip
+COPY requirements.txt /code/
 
-# کپی کردن تمام فایل‌ها به داخل کانتینر
+RUN pip install -r requirements.txt
 COPY . /code/
 
-# اجرای دستورات مدیریتی جنگو برای ایجاد دیتابیس و جمع‌آوری فایل‌های استاتیک
+EXPOSE 8000
 
-# اجرای سرور توسعه دیجانگو
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
